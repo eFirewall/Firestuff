@@ -1,9 +1,9 @@
 print('----------------------------------------------')
-print('                  HELLO APP')
+print('                     HOLA')
 print('----------------------------------------------')
 print()
 
-user_text = input('What is your name? ')
-greeting = 'Nice to meet you ' + user_text
+entrada = input('¿Como te llamas? ')
+saludo = 'Encantado de conocerte ' + entrada
 
-print(greeting)
+print(saludo)
