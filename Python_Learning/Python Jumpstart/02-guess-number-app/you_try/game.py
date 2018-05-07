@@ -6,7 +6,7 @@ print('-------------------------------------------')
 print()
 
 numero = random.randint(0, 100)
-nombre = input('¿Como te llamas?')
+nombre = input('¿Como te llamas? ')
 adivina = -1
 
 
