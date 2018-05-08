@@ -1,3 +1,4 @@
+u"""Adivina el número."""
 import random
 
 print('-------------------------------------------')
