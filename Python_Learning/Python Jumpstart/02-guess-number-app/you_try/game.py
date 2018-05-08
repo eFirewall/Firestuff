@@ -11,7 +11,7 @@ adivina = -1
 
 
 while adivina != numero:
-    adivina = input('Adivina que numero estoy pensando de 0 a 100?')
+    adivina = input('Adivina que numero estoy pensando de 0 a 100? ')
     adivina = int(adivina)
     if adivina > numero:
         print('{}, el número {} es demasiado alto'.format(nombre, adivina))
