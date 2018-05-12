@@ -41,7 +41,7 @@ def print_birthday_information(days):
 
 
 def main():
-    """Do stuff."""
+    """Execute main method."""
     print_header()
     bday = get_birthday_from_user()
     today = datetime.date.today()
