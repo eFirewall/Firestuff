@@ -1,4 +1,4 @@
-"""Journal App."""
+
 import journal
 
 def main():
