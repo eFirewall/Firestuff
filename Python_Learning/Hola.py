@@ -1,10 +1,10 @@
-"""Hola mundo."""
+u"""Hola mundo."""
 print('----------------------------------------------')
 print('                     HOLA')
 print('----------------------------------------------')
 print()
 
-entrada = input('¿Como te llamas? ')
+entrada = input(u'¿Como te llamas? ')
 saludo = 'Encantado de conocerte ' + entrada
 
 print(saludo)

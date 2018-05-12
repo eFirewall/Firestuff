@@ -1,4 +1,4 @@
-"""Aplicación cumpleaños."""
+"""Birthday app."""
 import datetime
 
 
