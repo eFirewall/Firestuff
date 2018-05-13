@@ -1,3 +1,4 @@
+import journal
 
 def main():
     print_header()
@@ -15,7 +16,8 @@ def run_event_loop():
 
     print('What do you wanna do with your journal?')
     cmd = None
-    journal_data = []  # list()
+    journal_name = 'default'
+    journal_data = journal.load(journal_name)  # []  # list()
 
     while cmd != 'x':
         cmd = input('[L]ist entries, [A]dd an entry, E[x]it: ')
@@ -29,7 +31,7 @@ def run_event_loop():
             print("Sorry, we cannot understand '{}'.".format(cmd))
 
     print('That will be all. Good bye!')
-
+    journal.save(journal_name, journal_data)
 
 def list_entries(data):
     print('Your journal entries: ')
@@ -40,7 +42,8 @@ def list_entries(data):
 
 def add_entry(data):
     text = input('Type your enry, <enter>, to exit: ')
-    data.append(text)
+    journal.add_entry(text, data)
+    # data.append(text)
 
 
 main()
