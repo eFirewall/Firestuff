@@ -1,8 +1,9 @@
 """Program module."""
 import journal
 
+
 def main():
-    """Main function to call them all."""
+    """Call all other functions."""
     print_header()
     run_event_loop()
 
