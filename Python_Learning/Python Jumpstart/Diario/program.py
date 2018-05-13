@@ -1,11 +1,14 @@
+"""Program module."""
 import journal
 
 def main():
+    """Main function to call them all."""
     print_header()
     run_event_loop()
 
 
 def print_header():
+    """Print the header."""
     print('-------------------------------')
     print('         JOURNAL APP')
     print('-------------------------------')
@@ -13,7 +16,7 @@ def print_header():
 
 
 def run_event_loop():
-
+    """Event looper."""
     print('What do you wanna do with your journal?')
     cmd = 'EMPTY'
     journal_name = 'default'
@@ -28,12 +31,14 @@ def run_event_loop():
         elif cmd == 'a':
             add_entry(journal_data)
         elif cmd != 'x' and cmd:
-            print("Sorry, we cannot understand '{}'.".format(cmd))
+            print("Sorr y, we cannot understand '{}'.".format(cmd))
 
     print('That will be all. Good bye!')
     journal.save(journal_name, journal_data)
 
+
 def list_entries(data):
+    """List entries."""
     print('Your journal entries: ')
     entries = reversed(data)
     for idx, entry in enumerate(entries):
@@ -41,9 +46,11 @@ def list_entries(data):
 
 
 def add_entry(data):
+    """Add entry."""
     text = input('Type your enry, <enter>, to exit: ')
     journal.add_entry(text, data)
     # data.append(text)
 
 
-main()
+if __name__ == '__main__':
+    main()
