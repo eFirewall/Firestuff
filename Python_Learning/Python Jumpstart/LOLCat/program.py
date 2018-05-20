@@ -4,6 +4,7 @@ import cat_service
 import subprocess
 import platform
 
+
 def main():
     """Orchestrate the main program."""
     print_the_header()
