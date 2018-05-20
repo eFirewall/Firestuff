@@ -1,15 +1,16 @@
 """LOLcat Factory."""
 import os
-
+import cat_service
+import subprocess
+import platform
 
 def main():
     """Orchestrate the main program."""
     print_the_header()
     folder = get_or_create_output_folder()
     print('Found or created folder: ' + folder)
-    # TODO Download Cats
-    # TODO Display cats
-    # print('hello from main')
+    download_cats(folder)
+    display_cats(folder)
 
 
 def print_the_header():
@@ -29,6 +30,31 @@ def get_or_create_output_folder():
         print('Creating new directory at {}...'.format(full_path))
         os.mkdir(full_path)
     return full_path
+
+
+def download_cats(folder):
+    """Download the cats."""
+    print('Contacting server to download cats...')
+    cat_count = 8
+    for i in range(1, cat_count+1):
+        name = 'lolcat {}'.format(i)
+        print('Downloading cat ' + name)
+        cat_service.get_cat(folder, name)
+    print('Done')
+
+
+def display_cats(folder):
+    """Display the cats."""
+    # open folder
+    print('Displaying cats in OS window.')
+    if platform.system() == 'Darwin':
+        subprocess.call(['open', folder])
+    elif platform.system() == 'Windows':
+        subprocess.call(['explorer', folder])
+    elif platform.system() == 'Linux':
+        subprocess.call(['xdg-open', folder])
+    else:
+        print("We don't support your OS: " + platform.system())
 
 
 if __name__ == '__main__':
