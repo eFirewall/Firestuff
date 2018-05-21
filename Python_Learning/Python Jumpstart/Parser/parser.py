@@ -14,6 +14,7 @@ def main():
     # TODO guardar a un fichero externo nuevo
     # TODO Control de ficheros. Si el fichero no existe que arroje error p.ej.
 
+
 def mostrar_header():
     """Imprime el header."""
     print('---------------------------------------')
