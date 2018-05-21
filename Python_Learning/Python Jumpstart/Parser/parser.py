@@ -11,7 +11,7 @@ def main():
 
 def mostrar_header():
     print('---------------------------------------')
-    print('             PARSER 1.0')
+    print('              PARSER 1.0')
     print('---------------------------------------')
     print('')
 
