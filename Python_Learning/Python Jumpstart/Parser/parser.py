@@ -33,10 +33,6 @@ def read_file():
     with open('lastrun.json') as data_file:
         data_item = json.load(data_file)
     counter = int(66)
-    results = ['results']
-    number = [0]
-    name = ['name']
-
     for i in range(0, counter + 1):
         codigo = data_item['results'][i]['responseCode']['code']
         mensaje = data_item['results'][i]['responseCode']['name']
