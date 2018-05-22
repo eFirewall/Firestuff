@@ -69,6 +69,7 @@ def looper():
     counter = len(data_item["results"])
 
     for i in range(counter):
+
         passfail = (data_item['results'][i]['tests']['status']).upper()
         codigo = data_item['results'][i]['responseCode']['code']
         mensaje = data_item['results'][i]['responseCode']['name']
