@@ -30,6 +30,9 @@ def comprueba_existencia_fichero():
 
     if os.path.exists(filename):
         print('El fichero "lastrun.json" existe.')
+        print('')
+        print('Podemos continuar...')
+        print('')
     else:
         print('El fichero "lastrun.json" NO existe')
         print('')
@@ -80,7 +83,7 @@ def mostrar_reporte():
         print('------------------------------------')
         print('')
         print('')
-        print('*Caso de Prueba: *')
+        print('*Caso de Prueba:*')
         print(caso)
         print('')
         print('*Peticion:*')
