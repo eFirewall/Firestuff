@@ -10,5 +10,6 @@ import logging
 
 with io.open('coleccion.json', 'r', encoding='utf8') as coleccion:
     coleccion_item = json.load(coleccion)
-    tst = coleccion_item['item'][0]['item'][0]['item'][3]['request']['description']
+    tst = coleccion_item[
+        'item'][0]['item'][0]['item'][0]['request']['description']
     print(tst)
