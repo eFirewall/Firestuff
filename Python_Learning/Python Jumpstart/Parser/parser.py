@@ -8,14 +8,14 @@ import sys
 
 def main():
     """Orquestra todo el script."""
-    mostrar_header()
-    Comprueba_fichero()
-    mostrar_test_plan()
-    looper()
+    mostrar_encabezado_aplicacion()
+    comprueba_existencia_fichero()
+    mostrar_encabezado_reporte()
+    mostrar_reporte()
     # TODO guardar a un fichero externo nuevo
 
 
-def mostrar_header():
+def mostrar_encabezado_aplicacion():
     """Imprime el header."""
     print('---------------------------------------')
     print('           PARSEATOR 1.0')
@@ -23,7 +23,7 @@ def mostrar_header():
     print('')
 
 
-def Comprueba_fichero():
+def comprueba_existencia_fichero():
     print('Comprobaciones iniciales:')
     print('')
     filename = ('lastrun.json')
@@ -38,7 +38,7 @@ def Comprueba_fichero():
         sys.exit('ERROR CRITICO: NADA ES COMO DEBE!!!')
 
 
-def mostrar_test_plan():
+def mostrar_encabezado_reporte():
     """Imprime, al principio del fichero, el nombre del test plan."""
     with io.open('lastrun.json', 'r', encoding='utf8') as data_file:
         data_item = json.load(data_file)
@@ -60,7 +60,7 @@ def mostrar_test_plan():
     print('------------------------------------')
 
 
-def looper():
+def mostrar_reporte():
     """Hace un loop y va metiendo cosas en el reporte."""
 
     with io.open('lastrun.json', 'r', encoding='utf8') as data_file:
