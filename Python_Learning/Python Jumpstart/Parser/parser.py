@@ -1,18 +1,20 @@
+# -*- coding: utf-8 -*-
 """Parseator 1.0."""
 import json
 import io
 import datetime
 import os
 import sys
+import logging
 
 
 def main():
     """Orquestra todo el script."""
+
     mostrar_encabezado_aplicacion()
     comprueba_existencia_fichero()
     mostrar_encabezado_reporte()
     mostrar_reporte()
-    # TODO guardar a un fichero externo nuevo
 
 
 def mostrar_encabezado_aplicacion():
@@ -34,6 +36,7 @@ def comprueba_existencia_fichero():
         print('Podemos continuar...')
         print('')
     else:
+        print('')
         print('El fichero "lastrun.json" NO existe')
         print('')
         print('No es posible continuar... OH POR DIOS!:')
@@ -51,9 +54,10 @@ def mostrar_encabezado_reporte():
         hoy = fecha.date().strftime("%d-%m-%Y")
         counter = len(data_item["results"])
 
+    sys.stdout = open("salida.mu", "a")
     print('------------------------------------')
     print('')
-    print('*Test plan: *')
+    print('*Test plan:*')
     print('*{}*'.format(plan))
     print('')
     print('Numero de casos: *{}*'.format(counter))
@@ -61,6 +65,7 @@ def mostrar_encabezado_reporte():
     print('Fecha de reporte: *{}*'.format(hoy))
     print('')
     print('------------------------------------')
+    sys.stdout.close()
 
 
 def mostrar_reporte():
@@ -79,25 +84,25 @@ def mostrar_reporte():
         caso = data_item['results'][i]['name']
         url = data_item['results'][i]['url']
         resp = ('El codigo de respuesta es: *{} {}*'.format(codigo, mensaje))
-
+        sys.stdout = open("salida.mu", "a")
         print('------------------------------------')
         print('')
         print('')
         print('*Caso de Prueba:*')
-        print(caso)
+        print(caso).encode('utf-8')
         print('')
         print('*Peticion:*')
-        print(url)
+        print(url).encode('utf-8')
         print('')
         print('*Resultado esperado:*')
         print('')
         print('')
         print('*Resultado obtenido:*')
-        print(resp)
+        print(resp).encode('utf-8')
         print('')
         print('')
         print('*Valoracion:*')
-        print('*{}*'.format(passfail))
+        print('*{}*'.format(passfail)).encode('utf-8')
         print('')
         print('*Evidencia:*')
         print('{code}')
@@ -105,6 +110,7 @@ def mostrar_reporte():
         print('{code}')
         print('')
         print('------------------------------------')
+        sys.stdout.close()
 
 
 if __name__ == '__main__':
