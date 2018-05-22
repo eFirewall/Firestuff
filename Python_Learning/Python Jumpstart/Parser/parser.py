@@ -15,6 +15,8 @@ def main():
     comprueba_existencia_fichero()
     mostrar_encabezado_reporte()
     mostrar_reporte()
+    # TODO Hacer que escriba correctamente el resultado de la Prueba
+    # TODO Importr el resultado esperado
 
 
 def mostrar_encabezado_aplicacion():
@@ -47,12 +49,12 @@ def comprueba_existencia_fichero():
 def mostrar_encabezado_reporte():
     """Imprime, al principio del fichero, el nombre del test plan."""
     with io.open('lastrun.json', 'r', encoding='utf8') as data_file:
-        data_item = json.load(data_file)
+        lastrun_item = json.load(data_file)
 
-        plan = data_item['name']
+        plan = lastrun_item['name']
         fecha = datetime.datetime.now()
         hoy = fecha.date().strftime("%d-%m-%Y")
-        counter = len(data_item["results"])
+        counter = len(lastrun_item["results"])
 
     sys.stdout = open("salida.mu", "a")
     print('------------------------------------')
@@ -71,18 +73,17 @@ def mostrar_encabezado_reporte():
 def mostrar_reporte():
     """Hace un loop y va metiendo cosas en el reporte."""
 
-    with io.open('lastrun.json', 'r', encoding='utf8') as data_file:
-        data_item = json.load(data_file)
-
-    counter = len(data_item["results"])
+    with io.open('lastrun.json', 'r', encoding='utf8') as lastrun:
+        lastrun_item = json.load(lastrun)
+    counter = len(lastrun_item["results"])
 
     for i in range(counter):
 
-        passfail = (data_item['results'][i]['tests']['status']).upper()
-        codigo = data_item['results'][i]['responseCode']['code']
-        mensaje = data_item['results'][i]['responseCode']['name']
-        caso = data_item['results'][i]['name']
-        url = data_item['results'][i]['url']
+        passfail = (lastrun_item['results'][i]['tests']['status']).upper()
+        codigo = lastrun_item['results'][i]['responseCode']['code']
+        mensaje = lastrun_item['results'][i]['responseCode']['name']
+        caso = lastrun_item['results'][i]['name']
+        url = lastrun_item['results'][i]['url']
         resp = ('El codigo de respuesta es: *{} {}*'.format(codigo, mensaje))
         sys.stdout = open("salida.mu", "a")
         print('------------------------------------')
