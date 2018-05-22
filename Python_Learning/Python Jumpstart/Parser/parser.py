@@ -1,5 +1,4 @@
 """Parseator 1.0."""
-
 import json
 import io
 import datetime
@@ -22,15 +21,13 @@ def mostrar_header():
     print('           PARSEATOR 1.0')
     print('---------------------------------------')
     print('')
-    print('')
-    print('')
-    print('')
 
 
 def Comprueba_fichero():
     print('Comprobaciones iniciales:')
     print('')
     filename = ('lastrun.json')
+
     if os.path.exists(filename):
         print('El fichero "lastrun.json" existe.')
     else:
@@ -45,10 +42,12 @@ def mostrar_test_plan():
     """Imprime, al principio del fichero, el nombre del test plan."""
     with io.open('lastrun.json', 'r', encoding='utf8') as data_file:
         data_item = json.load(data_file)
+
         plan = data_item['name']
         fecha = datetime.datetime.now()
         hoy = fecha.date().strftime("%d-%m-%Y")
         counter = len(data_item["results"])
+
     print('------------------------------------')
     print('')
     print('*Test plan: *')
@@ -63,10 +62,12 @@ def mostrar_test_plan():
 
 def looper():
     """Hace un loop y va metiendo cosas en el reporte."""
+
     with io.open('lastrun.json', 'r', encoding='utf8') as data_file:
         data_item = json.load(data_file)
-    """El loop en cuestion."""
+
     counter = len(data_item["results"])
+
     for i in range(counter):
         passfail = (data_item['results'][i]['tests']['status']).upper()
         codigo = data_item['results'][i]['responseCode']['code']
@@ -74,6 +75,7 @@ def looper():
         caso = data_item['results'][i]['name']
         url = data_item['results'][i]['url']
         resp = ('El codigo de respuesta es: *{} {}*'.format(codigo, mensaje))
+
         print('------------------------------------')
         print('')
         print('')
