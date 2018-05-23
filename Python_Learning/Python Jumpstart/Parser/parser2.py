@@ -8,24 +8,44 @@ import os
 import sys
 import logging
 
-with io.open('lastrun.json', 'r', encoding='utf8') as lastrun:
-    lastrun_item = json.load(lastrun)
+print('---------------------------------------')
+print('           PARSEATOR 2.0')
+print('---------------------------------------')
+print('')
+print('Comprobaciones iniciales:')
+print('')
+
+filename = 'lastrun.json'
+
+if os.path.exists(filename):
+    with io.open('lastrun.json', 'r', encoding='utf8') as lastrun:
+        lastrun_item = json.load(lastrun)
+    print('El fichero "lastrun.json" existe. Podemos continuar...')
     counter = len(lastrun_item["results"])
+
+else:
+    sys.exit('No se encuentra el fichero "lastrun.json". Fin.')
 
 
 def main():
     """Orquestra todo el script."""
-    Abre_el_fichero()
-    mostrar_encabezado_aplicacion()
+    plan = lastrun_item['name']
+    fecha = datetime.datetime.now()
+    hoy = fecha.date().strftime("%d-%m-%Y")
+
     sys.stdout = open("salida.mu", "a")
-    mostrar_encabezado_reporte()
+
+    mostrar_encabezado_reporte(plan, fecha, hoy)
+
     """LOOP"""
     for i in range(counter):
+
         caso = lastrun_item['results'][i]['name']
         url = lastrun_item['results'][i]['url']
         mensaje = lastrun_item['results'][i]['responseCode']['name']
         codigo = lastrun_item['results'][i]['responseCode']['code']
         resp = ('El codigo de respuesta es: *{} {}*'.format(codigo, mensaje))
+
         mostrar_caso_de_prueba(i, caso)
         mostrar_url_peticion(i, url)
         mostrar_resultado_esperado()  # TODO Hacer que haga algo
@@ -78,41 +98,7 @@ def mostrar_evidencias():
     print('------------------------------------')
 
 
-def mostrar_encabezado_aplicacion():
-    """Imprime el header."""
-    print('---------------------------------------')
-    print('           PARSEATOR 2.0')
-    print('---------------------------------------')
-    print('')
-
-
-def Abre_el_fichero():
-    with io.open('lastrun.json', 'r', encoding='utf8') as lastrun:
-        lastrun_item = json.load(lastrun)
-
-    print('Comprobaciones iniciales:')
-    print('')
-    filename = 'lastrun.json'
-    if os.path.exists(filename):
-        print('El fichero "lastrun.json" existe.')
-        print('')
-        print('Podemos continuar...')
-        print('')
-    else:
-        print('')
-        print('El fichero "lastrun.json" NO existe')
-        print('')
-        print('No es posible continuar... OH POR DIOS!:')
-        print('')
-        sys.exit('ERROR CRITICO: NADA ES COMO DEBE!!!')
-
-
-def mostrar_encabezado_reporte():
-    plan = lastrun_item['name']
-    fecha = datetime.datetime.now()
-    hoy = fecha.date().strftime("%d-%m-%Y")
-
-    # sys.stdout = open("salida.mu", "a")
+def mostrar_encabezado_reporte(plan, fecha, hoy):
     print('------------------------------------')
     print('')
     print('*Test plan:*')
@@ -123,7 +109,6 @@ def mostrar_encabezado_reporte():
     print('Fecha de reporte: *{}*'.format(hoy))
     print('')
     print('------------------------------------')
-    # sys.stdout.close()
 
 
 if __name__ == '__main__':
