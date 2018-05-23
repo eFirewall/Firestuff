@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 """Parseator 1.0."""
 import json
 import io
 import datetime
 import os
 import sys
-import logging
 
 
 def main():
@@ -15,8 +13,6 @@ def main():
     comprueba_existencia_fichero()
     mostrar_encabezado_reporte()
     mostrar_reporte()
-    # TODO Hacer que escriba correctamente el resultado de la Prueba
-    # TODO Importr el resultado esperado
 
 
 def mostrar_encabezado_aplicacion():
@@ -79,7 +75,6 @@ def mostrar_reporte():
 
     for i in range(counter):
 
-        passfail = (lastrun_item['results'][i]['tests']['status']).upper()
         codigo = lastrun_item['results'][i]['responseCode']['code']
         mensaje = lastrun_item['results'][i]['responseCode']['name']
         caso = lastrun_item['results'][i]['name']
@@ -103,7 +98,6 @@ def mostrar_reporte():
         print('')
         print('')
         print('*Valoracion:*')
-        # print('*{}*'.format(passfail)).encode('utf-8') FIXME esto no funciona
         print('')
         print('')
         print('*Evidencia:*')
@@ -113,19 +107,6 @@ def mostrar_reporte():
         print('')
         print('------------------------------------')
         sys.stdout.close()
-
-
-# OLD CODE NOTE:
-# with io.open('coleccion.json', 'r', encoding='utf8') as coleccion:
-#     coleccion_item = json.load(coleccion)
-#     tst = coleccion_item[
-#       'item'][0]['item'][1]['item'][2]['request']['description']
-#
-#     req = coleccion_item['item'][0]['item'][1]['item'][2]['name']
-#
-#     print(tst)
-#     print('')
-#     print(req)
 
 
 if __name__ == '__main__':

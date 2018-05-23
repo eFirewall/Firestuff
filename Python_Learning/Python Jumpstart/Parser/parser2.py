@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-# TODO
 
-"""Parseator 1.0."""
+"""Parseator 2.0."""
 import json
 import io
 import datetime
@@ -9,50 +8,91 @@ import os
 import sys
 import logging
 
-
 with io.open('lastrun.json', 'r', encoding='utf8') as lastrun:
     lastrun_item = json.load(lastrun)
-
-counter = len(lastrun_item["results"])
+    counter = len(lastrun_item["results"])
 
 
 def main():
     """Orquestra todo el script."""
+    Abre_el_fichero()
     mostrar_encabezado_aplicacion()
-    comprueba_existencia_fichero()
+    sys.stdout = open("salida.mu", "a")
     mostrar_encabezado_reporte()
+    """LOOP"""
     for i in range(counter):
-        mostrar_caso_de_prueba()
-    #     TODO mostrar_url_peticion()
-    #     TODO mostrar_resultado_esperado()
-    #     TODO mostrar_resultado_obtendo()
-    #     TODO mostrar_valoracion()
-    #     TODO mostrar_evidencias()
-
-
-def mostrar_caso_de_prueba():  # FIXME llamar a i desde el loop global
         caso = lastrun_item['results'][i]['name']
-        print('------------------------------------')
-        print('')
-        print('')
-        print('*Caso de Prueba:*')
-        print(caso).encode('utf-8')
-        print('')
+        url = lastrun_item['results'][i]['url']
+        mensaje = lastrun_item['results'][i]['responseCode']['name']
+        codigo = lastrun_item['results'][i]['responseCode']['code']
+        resp = ('El codigo de respuesta es: *{} {}*'.format(codigo, mensaje))
+        mostrar_caso_de_prueba(i, caso)
+        mostrar_url_peticion(i, url)
+        mostrar_resultado_esperado()  # TODO Hacer que haga algo
+        mostrar_resultado_obtenido(i, mensaje, codigo, resp)
+        mostrar_valoracion()  # TODO Algo habra que hacer con esto
+        mostrar_evidencias()  # TODO Realmente no hace nada aun...
+    sys.stdout.close()
+
+
+def mostrar_caso_de_prueba(i, caso):  # FIXME llamar a i desde el loop global
+    print('------------------------------------')
+    print('')
+    print('')
+    print('*Caso de Prueba:*')
+    print(caso).encode('utf-8')
+    print('')
+
+
+def mostrar_url_peticion(i, url):
+    print('*Peticion:*')
+    print(url).encode('utf-8')
+    print('')
+
+
+def mostrar_resultado_esperado():
+    print('*Resultado esperado:*')
+    print('')
+    print('')
+
+
+def mostrar_resultado_obtenido(i, mensaje, codigo, resp):
+    print('*Resultado obtenido:*')
+    print(resp).encode('utf-8')
+    print('')
+    print('')
+
+
+def mostrar_valoracion():
+    print('*Valoracion:*')
+    print('')
+    print('')
+
+
+def mostrar_evidencias():
+    print('*Evidencia:*')
+    print('{code}')
+    print('')
+    print('{code}')
+    print('')
+    print('------------------------------------')
 
 
 def mostrar_encabezado_aplicacion():
     """Imprime el header."""
     print('---------------------------------------')
-    print('           PARSEATOR 1.0')
+    print('           PARSEATOR 2.0')
     print('---------------------------------------')
     print('')
 
 
-def comprueba_existencia_fichero():
+def Abre_el_fichero():
+    with io.open('lastrun.json', 'r', encoding='utf8') as lastrun:
+        lastrun_item = json.load(lastrun)
+
     print('Comprobaciones iniciales:')
     print('')
-    filename = ('lastrun.json')
-
+    filename = 'lastrun.json'
     if os.path.exists(filename):
         print('El fichero "lastrun.json" existe.')
         print('')
