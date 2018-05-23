@@ -103,7 +103,8 @@ def mostrar_reporte():
         print('')
         print('')
         print('*Valoracion:*')
-        print('*{}*'.format(passfail)).encode('utf-8')
+        # print('*{}*'.format(passfail)).encode('utf-8') FIXME esto no funciona
+        print('')
         print('')
         print('*Evidencia:*')
         print('{code}')
@@ -112,6 +113,19 @@ def mostrar_reporte():
         print('')
         print('------------------------------------')
         sys.stdout.close()
+
+
+# OLD CODE NOTE:
+# with io.open('coleccion.json', 'r', encoding='utf8') as coleccion:
+#     coleccion_item = json.load(coleccion)
+#     tst = coleccion_item[
+#       'item'][0]['item'][1]['item'][2]['request']['description']
+#
+#     req = coleccion_item['item'][0]['item'][1]['item'][2]['name']
+#
+#     print(tst)
+#     print('')
+#     print(req)
 
 
 if __name__ == '__main__':
