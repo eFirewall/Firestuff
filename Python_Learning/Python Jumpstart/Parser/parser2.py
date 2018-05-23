@@ -8,7 +8,7 @@ import os
 import sys
 
 print('---------------------------------------')
-print('           PARSEATOR 2.0')
+print('|            PARSEATOR 2.0            |')
 print('---------------------------------------')
 print('')
 print('Comprobaciones iniciales:')
@@ -28,38 +28,38 @@ else:
 
 def main():
     """Orquestra todo el script."""
-    plan = lastrun_item['name']
+    test_plan = lastrun_item['name']
     fecha = datetime.datetime.now()
     hoy = fecha.date().strftime("%d-%m-%Y")
 
     sys.stdout = open("salida.mu", "a")
 
-    mostrar_encabezado_reporte(plan, fecha, hoy)
+    mostrar_encabezado_reporte(test_plan, fecha, hoy)
 
     """LOOP"""
     for i in range(counter):
 
-        caso = lastrun_item['results'][i]['name']
+        caso_prueba = lastrun_item['results'][i]['name']
         url = lastrun_item['results'][i]['url']
-        mensaje = lastrun_item['results'][i]['responseCode']['name']
-        codigo = lastrun_item['results'][i]['responseCode']['code']
-        resp = ('El codigo de respuesta es: *{} {}*'.format(codigo, mensaje))
+        r_message = lastrun_item['results'][i]['responseCode']['name']
+        r_code = lastrun_item['results'][i]['responseCode']['code']
+        resp = ('El r_code de respuesta es: *{} {}*'.format(r_code, r_message))
 
-        mostrar_caso_de_prueba(i, caso)
+        mostrar_caso_de_prueba(i, caso_prueba)
         mostrar_url_peticion(i, url)
         mostrar_resultado_esperado()  # TODO Hacer que haga algo
-        mostrar_resultado_obtenido(i, mensaje, codigo, resp)
+        mostrar_resultado_obtenido(i, r_message, r_code, resp)
         mostrar_valoracion()  # TODO Algo habra que hacer con esto
         mostrar_evidencias()  # TODO Realmente no hace nada aun...
     sys.stdout.close()
 
 
-def mostrar_caso_de_prueba(i, caso):  # FIXME llamar a i desde el loop global
+def mostrar_caso_de_prueba(i, caso_prueba):
     print('------------------------------------')
     print('')
     print('')
-    print('*Caso de Prueba:*')
-    print(caso).encode('utf-8')
+    print('*caso_prueba de Prueba:*')
+    print(caso_prueba).encode('utf-8')
     print('')
 
 
@@ -75,7 +75,7 @@ def mostrar_resultado_esperado():
     print('')
 
 
-def mostrar_resultado_obtenido(i, mensaje, codigo, resp):
+def mostrar_resultado_obtenido(i, r_message, r_code, resp):
     print('*Resultado obtenido:*')
     print(resp).encode('utf-8')
     print('')
@@ -97,11 +97,11 @@ def mostrar_evidencias():
     print('------------------------------------')
 
 
-def mostrar_encabezado_reporte(plan, fecha, hoy):
+def mostrar_encabezado_reporte(test_plan, fecha, hoy):
     print('------------------------------------')
     print('')
-    print('*Test plan:*')
-    print('*{}*'.format(plan))
+    print('*Test test_plan:*')
+    print('*{}*'.format(test_plan))
     print('')
     print('Numero de casos: *{}*'.format(counter))
     print('')
