@@ -6,7 +6,6 @@ import io
 import datetime
 import os
 import sys
-import logging
 
 print('---------------------------------------')
 print('           PARSEATOR 2.0')
